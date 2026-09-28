@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dream Closet — Outfits, Colores y Estilos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #faf7f2;
+            --bg-alt: #f1ebe1;
+            --ink: #2b2724;
+            --ink-soft: #6b6259;
+            --accent: #c46a4a;
+            --accent-soft: #e8b8a6;
+            --line: #e2d9cc;
+            --card: #ffffff;
+            --shadow: 0 10px 40px rgba(43, 39, 36, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.7;
+        }
+
+        h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
+
+        /* ---------- Header ---------- */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(250, 247, 242, 0.88);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .nav {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 18px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .brand span { color: var(--accent); font-style: italic; }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 28px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--ink-soft);
+            font-size: 0.92rem;
+            font-weight: 500;
+            transition: color 0.25s;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            left: 0; bottom: -5px;
+            width: 0; height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        nav a:hover { color: var(--ink); }
+        nav a:hover::after { width: 100%; }
+
+        /* ---------- Hero ---------- */
+        .hero {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 90px 24px 70px;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.6rem, 5vw, 4.2rem);
+            line-height: 1.1;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .hero p {
+            color: var(--ink-soft);
+            font-size: 1.1rem;
+            font-weight: 300;
+            max-width: 520px;
+            margin-bottom: 32px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 34px;
+            background: var(--ink);
+            color: #fff;
+            border: none;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.25s, background 0.25s;
+        }
+
+        .btn:hover { transform: translateY(-3px); background: var(--accent); }
+
+        .btn.ghost {
+            background: transparent;
+            color: var(--ink);
+            border: 1px solid var(--line);
+            margin-left: 12px;
+        }
+
+        .btn.ghost:hover { background: var(--ink); color: #fff; }
+
+        .hero-visual {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            padding: 34px;
+            box-shadow: var(--shadow);
+        }
+
+        .hero-visual h3 {
+            font-size: 1.25rem;
+            margin-bottom: 6px;
+        }
+
+        .hero-visual .sub {
+            color: var(--ink-soft);
+            font-size: 0.85rem;
+            margin-bottom: 22px;
+        }
+
+        .swatch-row { display: flex; gap: 10px; margin-bottom: 24px; }
+
+        .swatch {
+            flex: 1;
+            height: 74px;
+            border-radius: 12px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 8px;
+            font-size: 0.7rem;
+            color: #fff;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: transform 0.25s;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.35);
+        }
+
+        .swatch:hover { transform: translateY(-5px); }
+
+        /* ---------- Section base ---------- */
+        section { padding: 70px 24px; }
+
+        .wrap { max-width: 1180px; margin: 0 auto; }
+
+        .sec-head { text-align: center; margin-bottom: 48px; }
+
+        .sec-head .eyebrow {
+            display: inline-block;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .sec-head h2 {
+            font-size: clamp(1.9rem, 3.5vw, 2.7rem);
+            font-weight: 500;
+        }
+
+        .sec-head p {
+            color: var(--ink-soft);
+            max-width: 620px;
+            margin: 14px auto 0;
+            font-weight: 300;
+        }
+
+        /* ---------- Outfits ---------- */
+        #outfits { background: var(--bg-alt); }
+
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            padding: 9px 22px;
+            border-radius: 30px;
+            border: 1px solid var(--line);
+            background: var(--card);
+            color: var(--ink-soft);
+            font-size: 0.88rem;
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+
+        .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+        .filter-btn.active {
+            background: var(--ink);
+            border-color: var(--ink);
+            color: #fff;
+        }
+
+        .outfit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 26px;
+        }
+
+        .outfit-card {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .outfit-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+
+        .outfit-card.hidden { display: none; }
+
+        .outfit-img {
+            height: 210px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            position: relative;
+        }
+
+        .outfit-tag {
+            position: absolute;
+            top: 14px; left: 14px;
+            background: rgba(255,255,255,0.92);
+            color: var(--ink);
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border-radius: 20px;
+        }
+
+        .outfit-body { padding: 22px; }
+
+        .outfit-body h3 { font-size: 1.3rem; margin-bottom: 8px; }
+
+        .outfit-body p {
+            color: var(--ink-soft);
+            font-size: 0.9rem;
+            font-weight: 300;
+            margin-bottom: 16px;
+        }
+
+        .pieces { list-style: none; margin-bottom: 16px; }
+
+        .pieces li {
+            font-size: 0.85rem;
+            color: var(--ink-soft);
+            padding: 5px 0;
+            border-bottom: 1px dashed var(--line);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .pieces li span { color: var(--ink); font-weight: 500; }
+
+        .mini-swatches { display: flex; gap: 8px; }
+
+        .mini {
+            width: 26px; height: 26px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        }
+
+        /* ---------- Colors ---------- */
+        .palette-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 26px;
+        }
+
+        .palette {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .palette:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+
+        .palette-strip { display: flex; height: 130px; }
+
+        .palette-strip div {
+            flex: 1;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 10px;
+            font-size: 0.68rem;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+            transition: flex 0.3s;
+        }
+
+        .palette-strip div:hover { flex: 1.6; }
+
+        .palette-body { padding: 22px; }
+
+        .palette-body h3 { font-size: 1.2rem; margin-bottom: 6px; }
+
+        .palette-body p {
+            color: var(--ink-soft);
+            font-size: 0.88rem;
+            font-weight: 300;
+            margin-bottom: 12px;
+        }
+
+        .palette-tip {
+            font-size: 0.82rem;
+            background: var(--bg-alt);
+            border-radius: 10px;
+            padding: 10px 14px;
+            color: var(--ink-soft);
+        }
+
+        .palette-tip strong { color: var(--accent); }
+
+        /* ---------- Rules ---------- */
+        .rules {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin-top: 20px;
+        }
+
+        .rule {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            padding: 26px;
+        }
+
+        .rule .num {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--accent-soft);
+            font-style: italic;
+        }
+
+        .rule h3 { font-size: 1.15rem; margin: 8px 0; }
+
+        .rule p { color: var(--ink-soft); font-size: 0.88rem; font-weight: 300; }
+
+        /* ---------- Styles ---------- */
+        #estilos { background: var(--bg-alt); }
+
+        .style-tabs {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 36px;
+        }
+
+        .style-tab {
+            padding: 10px 24px;
+            border-radius: 30px;
+            border: 1px solid var(--line);
+            background: var(--card);
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--ink-soft);
+            transition: all 0.25s;
+        }
+
+        .style-tab:hover { border-color: var(--accent); }
+
+        .style-tab.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+        }
+
+        .style-panel {
+            display: none;
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            overflow: hidden;
+            grid-template-columns: 1fr 1.4fr;
+        }
+
+        .style-panel.active { display: grid; }
+
+        .style-visual {
+            min-height: 320px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 7rem;
+        }
+
+        .style-info { padding: 40px; }
+
+        .style-info h3 {
+            font-size: 2rem;
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+
+        .style-info .origin {
+            color: var(--accent);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+
+        .style-info > p {
+            color: var(--ink-soft);
+            font-weight: 300;
+            margin-bottom: 22px;
+        }
+
+        .style-info h4 {
+            font-size: 0.78rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--ink);
+            margin-bottom: 10px;
+        }
+
+        .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+
+        .chip {
+            background: var(--bg-alt);
+            border: 1px solid var(--line);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            color: var(--ink-soft);
+        }
+
+        .style-palette { display: flex; gap: 8px; }
+
+        .style-palette div {
+            width: 44px; height: 44px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .style-palette div:hover { transform: scale(1.12); }
+
+        /* ---------- Tips ---------- */
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 22px;
+        }
+
+        .tip {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            padding: 28px;
+            transition: transform 0.3s;
+        }
+
+        .tip:hover { transform: translateY(-5px); }
+
+        .tip .emoji { font-size: 2rem; margin-bottom: 12px; display: block; }
+
+        .tip h3 { font-size: 1.1rem; margin-bottom: 8px; }
+
+        .tip p { color: var(--ink-soft); font-size: 0.88rem; font-weight: 300; }
+
+        /* ---------- Toast ---------- */
+        #toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--ink);
+            color: #fff;
+            padding: 13px 28px;
+            border-radius: 30px;
+            font-size: 0.88rem;
+            opacity: 0;
+            transition: all 0.35s;
+            z-index: 999;
+            pointer-events: none;
+        }
+
+        #toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+        /* ---------- Footer ---------- */
+        footer {
+            background: var(--ink);
+            color: #cfc7bd;
+            padding: 60px 24px 30px;
+            text-align: center;
+        }
+
+        footer .brand { color: #fff; margin-bottom: 14px; display: block; }
+
+        footer .links {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 26px;
+            flex-wrap: wrap;
+            margin-bottom: 26px;
+        }
+
+        footer .links a {
+            color: #cfc7bd;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.25s;
+        }
+
+        footer .links a:hover { color: var(--accent-soft); }
+
+        footer .copy { font-size: 0.8rem; color: #8a8177; }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 900px) {
+            .hero { grid-template-columns: 1fr; padding-top: 60px; }
+            .style-panel.active { grid-template-columns: 1fr; }
+            nav ul { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="nav">
+        <div class="brand">Dream <span>Closet</span></div>
+        <nav>
+            <ul>
+                <li><a href="#outfits">Outfits</a></li>
+                <li><a href="#colores">Colores</a></li>
+                <li><a href="#reglas">Reglas de color</a></li>
+                <li><a href="#estilos">Estilos</a></li>
+                <li><a href="#tips">Tips</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <div>
+        <h1>Arma el look <em>perfecto</em> para cada día</h1>
+        <p>Outfits listos para usar, combinaciones de colores que funcionan y guías de estilo para que nunca más digas "no tengo nada que ponerme".</p>
+        <a href="#outfits" class="btn">Ver outfits</a>
+        <a href="#colores" class="btn ghost">Explorar colores</a>
+    </div>
+
+    <div class="hero-visual">
+        <h3>Paleta del día</h3>
+        <div class="sub">Toca un color para copiar su código HEX</div>
+        <div class="swatch-row">
+            <div class="swatch" style="background:#2b2724" data-hex="#2b2724">#2B2724</div>
+            <div class="swatch" style="background:#c46a4a" data-hex="#c46a4a">#C46A4A</div>
+            <div class="swatch" style="background:#e8b8a6" data-hex="#e8b8a6">#E8B8A6</div>
+            <div class="swatch" style="background:#f1ebe1; color:#2b2724; text-shadow:none" data-hex="#f1ebe1">#F1EBE1</div>
+        </div>
+        <p style="font-size:0.85rem; color:var(--ink-soft); font-weight:300;">
+            Neutros cálidos + un toque terracota: la base de cualquier guardarropa cápsula versátil.
+        </p>
+    </div>
+</section>
+
+<!-- OUTFITS -->
+<section id="outfits">
+    <div class="wrap">
+        <div class="sec-head">
+            <span class="eyebrow">Lookbook</span>
+            <h2>Outfits listos para copiar</h2>
+            <p>Combinaciones probadas por ocasión. Cambia los tonos y te sirven para cualquier temporada.</p>
+        </div>
+
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">Todos</button>
+            <button class="filter-btn" data-filter="casual">Casual</button>
+            <button class="filter-btn" data-filter="trabajo">Trabajo</button>
+            <button class="filter-btn" data-filter="noche">Noche</button>
+            <button class="filter-btn" data-filter="finde">Fin de semana</button>
+        </div>
+
+        <div class="outfit-grid" id="outfitGrid">
+            <!-- cards inyectadas por JS -->
+        </div>
+    </div>
+</section>
+
+<!-- COLORES -->
+<section id="colores">
+    <div class="wrap">
+        <div class="sec-head">
+            <span class="eyebrow">Paletas</span>
+            <h2>Combinaciones de colores</h2>
+            <p>Paletas funcionales con proporciones exactas. Haz clic en cualquier color para copiar su HEX.</p>
+        </div>
+
+        <div class="palette-grid" id="paletteGrid">
+            <!-- paletas inyectadas por JS -->
+        </div>
+    </div>
+</section>
+
+<!-- REGLAS -->
+<section id="reglas">
+    <div class="wrap">
+        <div class="sec-head">
+            <span class="eyebrow">Teoría del color</span>
+            <h2>Reglas que siempre funcionan</h2>
+            <p>No necesitas estudiar diseño: con estas cuatro reglas combinas cualquier prenda sin equivocarte.</p>
+        </div>
+
+        <div class="rules">
+            <div class="rule">
+                <div class="num">01</div>
+                <h3>La regla 60-30-10</h3>
+                <p>60% de tu look en un color base neutro, 30% en un color secundario y 10% en un acento vibrante. Es la fórmula de las habitaciones bien decoradas, aplicada a la ropa.</p>
+            </div>
+            <div class="rule">
+                <div class="num">02</div>
+                <h3>Neutros como ancla</h3>
+                <p>Negro, blanco, beige, camel, gris y azul marino combinan con todo. Construye tu base con ellos y experimenta solo en las prendas grandes.</p>
+            </div>
+            <div class="rule">
+                <div class="num">03</div>
+                <h3>Temperatura del color</h3>
+                <p>Combina colores cálidos (terracota, mostaza, oliva) entre sí y fríos (azul, gris, lavanda) entre sí. Mezclar ambos funciona solo si hay un neutro de por medio.</p>
+            </div>
+            <div class="rule">
+                <div class="num">04</div>
+                <h3>Un solo protagonista</h3>
+                <p>Si llevas una prenda llamativa, el resto debe ser silencioso. Dos piezas con mucho peso visual compiten y el outfit se ve saturado.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ESTILOS -->
+<section id="estilos">
+    <div class="wrap">
+        <div class="sec-head">
+            <span class="eyebrow">Guía de estilos</span>
+            <h2>Encuentra tu estilo</h2>
+            <p>Cinco estilos clave: qué llevar, qué combinar y con qué colores funcionan mejor.</p>
+        </div>
+
+        <div class="style-tabs" id="styleTabs">
+            <button class="style-tab active" data-style="0">Minimalista</button>
+            <button class="style-tab" data-style="1">Streetwear</button>
+            <button class="style-tab" data-style="2">Romántico</button>
+            <button class="style-tab" data-style="3">Clásico</button>
+            <button class="style-tab" data-style="4">Bohemio</button>
+        </div>
+
+        <div id="stylePanels"><!-- paneles inyectados por JS --></div>
+    </div>
+</section>
+
+<!-- TIPS -->
+<section id="tips">
+    <div class="wrap">
+        <div class="sec-head">
+            <span class="eyebrow">Bonus</span>
+            <h2>Tips para sacar más partido a tu clóset</h2>
+        </div>
+
+        <div class="tips-grid">
+            <div class="tip">
+                <span class="emoji">👕</span>
+                <h3>Guardarropa cápsula</h3>
+                <p>Entre 30 y 40 prendas bien elegidas cubren el 90% de tus días. Prioriza piezas neutras que combinen entre sí.</p>
+            </div>
+            <div class="tip">
+                <span class="emoji">🔁</span>
+                <h3>La regla de las 3 combinaciones</h3>
+                <p>Antes de comprar algo, piensa 3 outfits distintos con lo que ya tienes. Si no encuentras 3, déjalo en la tienda.</p>
+            </div>
+            <div class="tip">
+                <span class="emoji">🎨</span>
+                <h3>Monocromático con matices</h3>
+                <p>Usar un mismo tono en varios valores (claro, medio, oscuro) estiliza la silueta y siempre se ve intencional.</p>
+            </div>
+            <div class="tip">
+                <span class="emoji">✨</span>
+                <h3>Accesorios cambian todo</h3>
+                <p>El mismo jeans y remera se ven distintos con cinturón y aretes que con gorra y zapatillas. Juega con ellos.</p>
+            </div>
+            <div class="tip">
+                <span class="emoji">📐</span>
+                <h3>Equilibrio de volúmenes</h3>
+                <p>Si arriba es holgado, abajo ajustado (y viceversa). Combinar dos volúmenes amplios tapa la figura.</p>
+            </div>
+            <div class="tip">
+                <span class="emoji">🧺</span>
+                <h3>Ordena por color</h3>
+                <p>Colgar la ropa por familia de color hace que veas combinaciones al instante y evita comprar duplicados.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="brand">Dream <span style="color:var(--accent-soft)">Closet</span></div>
+    <ul class="links">
+        <li><a href="#outfits">Outfits</a></li>
+        <li><a href="#colores">Colores</a></li>
+        <li><a href="#reglas">Reglas</a></li>
+        <li><a href="#estilos">Estilos</a></li>
+        <li><a href="#tips">Tips</a></li>
+    </ul>
+    <p class="copy">© 2026 Dream Closet — Hecho con estilo para la comunidad.</p>
+</footer>
+
+<div id="toast">Copiado ✓</div>
+
+<script>
+    /* ---------- Toast ---------- */
+    const toast = document.getElementById('toast');
+    let toastTimer;
+    function showToast(msg) {
+        toast.textContent = msg;
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove('show'), 1800);
+    }
+
+    function copyText(text) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(() => showToast(text + ' copiado ✓'));
+        } else {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            showToast(text + ' copiado ✓');
+        }
+    }
+
+    /* ---------- Outfits ---------- */
+    const outfits = [
+        { name: 'Café de lunes', cat: 'trabajo', emoji: '🧥', bg: '#e7ded0',
+          desc: 'Base neutra para oficina que funciona con cualquier abrigo.',
+          pieces: [['Blazer camel', 'Beige'], ['Camisa blanca', 'Blanco'], ['Pantalón chino', 'Carbón'], ['Mocasines', 'Marrón']],
+          colors: ['#c8a97e', '#f7f4ee', '#3b3a37', '#6b4a32'] },
+        { name: 'Retro urbano', cat: 'casual', emoji: '🧢', bg: '#d9e0e4',
+          desc: 'Denim completo con un toque de color en los accesorios.',
+          pieces: [['Denim jacket', 'Azul'], ['Jean recto', 'Azul claro'], ['Top básico', 'Blanco'], ['Gorra', 'Negro']],
+          colors: ['#5b7fa6', '#9fbcd8', '#fafafa', '#2b2724'] },
+        { name: 'Noche dorada', cat: 'noche', emoji: '👗', bg: '#efe1d6',
+          desc: 'Vestido midi con joyería dorada. Elegante sin esfuerzo.',
+          pieces: [['Vestido midi', 'Terracota'], ['Taildares', 'Dorado'], ['Clutch', 'Borgoña'], ['Tacones', 'Nude']],
+          colors: ['#c46a4a', '#d9a441', '#7a2233', '#d8b9a3'] },
+        { name: 'Domingo lento', cat: 'finde', emoji: '🧣', bg: '#e2e5d9',
+          desc: 'Capas cómodas para brunch o paseo con clima fresco.',
+          pieces: [['Sudadera', 'Verde oliva'], ['Jogger', 'Gris'], ['Zapatillas', 'Blanco'], ['Bufanda', 'Crema']],
+          colors: ['#7d8a5e', '#a8a8a3', '#f2efe9', '#e6dcc8'] },
+        { name: 'Monocromo negro', cat: 'noche', emoji: '🖤', bg: '#cfd0d2',
+          desc: 'Todo negro con texturas distintas para que no se vea plano.',
+          pieces: [['Trench largo', 'Negro'], ['Turtleneck', 'Negro'], ['Pantalón sastre', 'Negro']], 
+          colors: ['#1c1b1a', '#3a3937', '#5c5a57'] },
+        { name: 'Azul oficina', cat: 'trabajo', emoji: '👔', bg: '#dae3ec',
+          desc: 'El trío azul-blanco-navy nunca falla en reuniones.',
+          pieces: [['Sastre navy', 'Azul marino'], ['Camisa', 'Blanco'], ['Correa', 'Negro']],
+          colors: ['#2b3f63', '#f7f7f5', '#26241f'] },
+        { name: 'Denim y blanco', cat: 'casual', emoji: '👖', bg: '#e6e9ec',
+          desc: 'Combinación atemporal: fresca, limpia y fácil.',
+          pieces: [['Camisa oversized', 'Blanco'], ['Jean wide leg', 'Azul'], ['Mules', 'Beige']],
+          colors: ['#f8f6f1', '#6f8cb0', '#d8c3a5'] },
+        { name: 'Cápsula de viaje', cat: 'finde', emoji: '✈️', bg: '#ece5da',
+          desc: 'Cinco prendas neutras que se combinan entre sí.',
+          pieces: [['Abrigo ligero', 'Camel'], ['Top', 'Crema'], ['Pantalón', 'Carbón']],
+          colors: ['#c8a97e', '#f0e8dc', '#3f3d3a'] },
+        { name: 'Rock suave', cat: 'noche', emoji: '🎸', bg: '#d5d1cd',
+          desc: 'Cuero y básicos: actitud sin saturar la mirada.',
+          pieces: [['Chaqueta de cuero', 'Negro'], ['Tee', 'Blanco'], ['Jean', 'Azul oscuro']],
+          colors: ['#26241f', '#f4f2ee', '#3d4d63'] }
+    ];
+
+    const grid = document.getElementById('outfitGrid');
+    grid.innerHTML = outfits.map(o => `
+        <article class="outfit-card" data-cat="${o.cat}">
+            <div class="outfit-img" style="background:${o.bg}">
+                <span class="outfit-tag">${o.cat}</span>
+                ${o.emoji}
+            </div>
+            <div class="outfit-body">
+                <h3>${o.name}</h3>
+                <p>${o.desc}</p>
+                <ul class="pieces">
+                    ${o.pieces.map(p => `<li>${p[0]}<span>${p[1]}</span></li>`).join('')}
+                </ul>
+                <div class="mini-swatches">
+                    ${o.colors.map(c => `<div class="mini" style="background:${c}" data-hex="${c}"></div>`).join('')}
+                </div>
+            </div>
+        </article>
+    `).join('');
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const f = btn.dataset.filter;
+            document.querySelectorAll('.outfit-card').forEach(card => {
+                card.classList.toggle('hidden', !(f === 'all' || card.dataset.cat === f));
+            });
+        });
+    });
+
+    /* ---------- Paletas ---------- */
+    const palettes = [
+        { name: 'Tierra cálida', desc: 'Tonos que transmiten calma y se ven caros.',
+          colors: ['#7a4a2b', '#c46a4a', '#e0a878', '#f1ebe1'],
+          tip: 'Ideal para <strong>piezas de punto</strong> y accesorios de cuero.' },
+        { name: 'Azul sereno', desc: 'Combinación fría perfecta para oficina y días claros.',
+          colors: ['#1f2d40', '#3f5d7a', '#8fb0c9', '#eef3f6'],
+          tip: 'Funciona muy bien con <strong>zapatos blancos</strong>.' },
+        { name: 'Verde bosque', desc: 'Frescura natural con neutros equilibrados.',
+          colors: ['#2f3f2b', '#5c7350', '#a8b78d', '#eef0e4'],
+          tip: 'Combínalo con <strong>madera y nude</strong> para un look orgánico.' },
+        { name: 'Monocromo nude', desc: 'Tonos piel que alargan la silueta.',
+          colors: ['#3a2e27', '#8a6a56', '#d1ae91', '#f6ece1'],
+          tip: 'Usa <strong>diferentes texturas</strong> para que no se vea plano.' },
+        { name: 'Borgoña & crema', desc: 'Elegante y sofisticado para temporada fresca.',
+          colors: ['#5e1b2a', '#8e3546', '#d9b7a8', '#f7f2ea'],
+          tip: 'Un <strong' + '>labial borgoña</strong> cierra el look.' },
+        { name: 'Pastel contrastado', desc: 'Suave por fuera, con un acento que despierta.',
+          colors: ['#f2c9d1', '#cfe3d8', '#c9d6ef', '#2b2724'],
+          tip: 'El <strong>negro en accesorios</strong> evita que parezca infantil.' }
+    ];
+
+    document.getElementById('paletteGrid').innerHTML = palettes.map(p => `
+        <div class="palette">
+            <div class="palette-strip">
+                ${p.colors.map(c => `<div style="background:${c}" data-hex="${c}">${c.toUpperCase()}</div>`).join('')}
+            </div>
+            <div class="palette-body">
+                <h3>${p.name}</h3>
+                <p>${p.desc}</p>
+                <div class="palette-tip">${p.tip}</div>
+            </div>
+        </div>
+    `).join('');
+
+    /* ---------- Estilos ---------- */
+    const styles = [
+        { name: 'Minimalista', origin: 'Escandinavia · años 90+', emoji: '🤍', bg: '#efece6',
+          text: 'Menos piezas, mejor elegidas. Cortes limpios, cero estampados y una paleta reducida a neutros. La belleza está en la proporción y el corte.',
+          chips: ['Corte recto', 'Sin estampados', 'Neutros', 'Silueta limpia', 'Pocas piezas'],
+          colors: ['#2b2724', '#8b8175', '#d9d2c5', '#f7f5f0'] },
+        { name: 'Streetwear', origin: 'Calles de NYC y Tokio · años 80+', emoji: '🧢', bg: '#dfe3e7',
+          text: 'Comodidad con actitud. Prendas oversize, gráficas y zapatillas como pieza central. Mezcla lo deportivo con lo urbano sin miedo.',
+          chips: ['Oversize', 'Sneakers', 'Gráficas', 'Gorra', 'Capas'],
+          colors: ['#1c1c1e', '#5a5a5f', '#c7c9cc', '#f04e23'] },
+        { name: 'Romántico', origin: 'París · siglo XIX', emoji: '🌸', bg: '#f3e5e6',
+          text: 'Texturas suaves, volantes, encajes y tonos pastel. Silueta marcada en la cintura y detalles delicados en cada prenda.',
+          chips: ['Encaje', 'Midi', 'Pasteles', 'Flores', 'Seda'],
+          colors: ['#d9a7ac', '#f0d3d5', '#fbeef0', '#8a6a72'] },
+        { name: 'Clásico', origin: 'Sastrería inglesa · años 20', emoji: '🎩', bg: '#e5e1da',
+          text: 'Piezas atemporales que no pasan de moda: sastre, botones, líneas estructuradas y calidad por encima de tendencias.',
+          chips: ['Sastre', 'Botas', 'Camisa blanca', 'Estructurado', 'Atemporal'],
+          colors: ['#2b3f63', '#5c5a57', '#c8b89a', '#f7f5f0'] },
+        { name: 'Bohemio', origin: 'Bohemia · años 70', emoji: '🌻', bg: '#ece2d2',
+          text: 'Libertad y arte en cada prenda. Estampados étnicos, faldas fluidas, texturas naturales y capas que se mueven contigo.',
+          chips: ['Estampados', 'Faldas largas', 'Tejidos', 'Franjas', 'Accesorios'],
+          colors: ['#8a5a2b', '#b8823c', '#d9bd85', '#f4ead6'] }
+    ];
+
+    document.getElementById('stylePanels').innerHTML = styles.map((s, i) => `
+        <div class="style-panel ${i === 0 ? 'active' : ''}" data-panel="${i}">
+            <div class="style-visual" style="background:${s.bg}">${s.emoji}</div>
+            <div class="style-info">
+                <h3>${s.name}</h3>
+                <div class="origin">${s.origin}</div>
+                <p>${s.text}</p>
+                <h4>Claves del estilo</h4>
+                <div class="chips">${s.chips.map(c => `<span class="chip">${c}</span>`).join('')}</div>
+                <h4>Paleta recomendada</h4>
+                <div class="style-palette">${s.colors.map(c => `<div style="background:${c}" data-hex="${c}" title="${c}"></div>`).join('')}</div>
+            </div>
+        </div>
+    `).join('');
+
+    document.querySelectorAll('.style-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.style-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.style-panel').forEach(p => p.classList.remove('active'));
+            tab.classList.add('active');
+            document.querySelector(`[data-panel="${tab.dataset.style}"]`).classList.add('active');
+        });
+    });
+
+    /* ---------- Copiar HEX en cualquier color ---------- */
+    document.addEventListener('click', e => {
+        const el = e.target.closest('[data-hex]');
+        if (el) copyText(el.dataset.hex);
+    });
+</script>
+
+</body>
+</html>
